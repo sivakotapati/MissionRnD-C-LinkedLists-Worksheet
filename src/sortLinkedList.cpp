@@ -17,7 +17,33 @@ struct node {
 	int num;
 	struct node *next;
 };
-
+void swap(struct node *, struct node *);
 struct node * sortLinkedList(struct node *head) {
-	return NULL;
+	struct node *min, *i, *j;
+	int t;
+
+	if (head == NULL) return NULL;
+
+	//selection sort
+	for (i = head; i->next != NULL; i = i->next){
+		min = i;
+		for (j = i->next; j!= NULL; j = j->next){
+			if ((j->num) < (min->num)){
+				min = j;
+			}
+		} // inner for loop
+		
+		if (min != i){
+			swap(min, i);
+		}
+	}//outer for loop
+	
+	return head;
+}
+void swap(struct node *a, struct node *b){
+	int t;
+	t = a->num;
+	a->num = b->num;
+	b->num = t;
+
 }
